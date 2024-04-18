@@ -128,3 +128,31 @@ prompt> ./scheduler.py -h
 
 to get a complete list of flags and options (including options such as setting
 the time quantum for the RR scheduler).
+
+---
+
+## Homework 1
+
+job의 도착 시간에 따라 스케줄링 시뮬레이션을 돌릴 수 있도록 `-a` 옵션을 추가하였다.
+`,`로 구분하여 job의 순서대로 입력하여 적용한다.
+
+```sh
+prompt>  ./scheduler.py -p SJF -j 3 -s 100 -a 7,4,1
+```
+
+다음과 같이 job의 개수와 도착 시간 인자의 개수가 일치하지 않으면, 오류가 발생한다.
+
+```
+prompt>  ./scheduler.py -p SJF -j 3 -s 100 -a 7,4
+ARG policy SJF
+ARG jobs 3
+ARG arrival 7,4
+ARG maxlen 10
+ARG seed 100
+
+Error: number of jobs is not equal to number of arrival times
+```
+
+도착 시간에 따라 SJF 스케줄링을 실행하면 STCF가 실행되며, 도착시간을 입력하지 않은 경우에는 기존 SJF 스케줄링 기법으로 실행된다.
+기존의 FIFO, RR 스케줄링에도 도착시간을 반영하도록 수정했다.
+
